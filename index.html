@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rizz App for Couples 💜</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+/* 🌙 Base */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{background:linear-gradient(135deg,#150021,#2e0042);color:#fff;display:flex;flex-direction:column;min-height:100vh;}
+header{text-align:center;padding:1.5rem;background:rgba(255,255,255,0.05);border-bottom:1px solid rgba(255,255,255,0.1);}
+header h1{color:#e29bff;font-size:1.8rem;font-weight:700;}
+nav{display:flex;flex-wrap:wrap;justify-content:center;gap:.7rem;background:rgba(255,255,255,0.05);padding:1rem;}
+nav button{background:none;border:1px solid rgba(255,255,255,0.2);padding:.6rem 1rem;color:#fff;border-radius:25px;cursor:pointer;transition:.3s;font-weight:500;}
+nav button.active,nav button:hover{background:#a855f7;border-color:#a855f7;}
+main{flex:1;padding:2rem 1.5rem;display:flex;justify-content:center;align-items:flex-start;}
+section{display:none;width:100%;max-width:600px;text-align:center;background:rgba(255,255,255,0.05);border-radius:20px;padding:2rem;box-shadow:0 4px 20px rgba(0,0,0,.3);}
+section.active{display:block;animation:fadeIn .4s;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+.section-card h2{color:#d8b4fe;margin-bottom:1rem;}
+button{outline:none;}
+.rizz-btn{background:#a855f7;border:none;color:#fff;padding:.7rem 1.2rem;border-radius:8px;margin:.5rem;cursor:pointer;transition:.3s;}
+.rizz-btn:hover{background:#c084fc;}
+.fav-list{margin-top:.8rem;background:rgba(255,255,255,.07);border-radius:10px;padding:1rem;max-height:150px;overflow-y:auto;}
+.fav-item{margin:.3rem 0;font-size:.95rem;background:rgba(255,255,255,.1);padding:.4rem .7rem;border-radius:6px;}
+textarea,input[type="text"],input[type="date"]{width:100%;padding:.6rem;margin:.5rem 0;border:none;border-radius:8px;background:rgba(255,255,255,0.1);color:#fff;}
+textarea:focus,input:focus{outline:1px solid #bb86fc;}
+.note{background:rgba(255,255,255,0.1);padding:.6rem;border-radius:8px;margin:.5rem 0;text-align:left;}
+.reminder-item{background:rgba(255,255,255,0.1);padding:.6rem;border-radius:8px;margin:.5rem 0;}
+footer{background:rgba(255,255,255,0.05);text-align:center;padding:1.2rem 1rem;border-top:1px solid rgba(255,255,255,0.1);}
+footer p{color:#ccc;}
+footer a{color:#bb86fc;text-decoration:none;font-weight:600;}
+.socials{display:flex;justify-content:center;gap:1rem;margin-top:.7rem;}
+.socials i{font-size:1.3rem;cursor:pointer;transition:.3s;}
+.socials i:hover{color:#e29bff;}
+@media(max-width:768px){nav{gap:.5rem;}nav button{padding:.5rem .8rem;font-size:.9rem;}section{padding:1.5rem;}}
+</style>
+</head>
+<body>
+
+<header><h1>Rizz App for Couples 💜</h1></header>
+
+<nav>
+  <button class="active" onclick="showSection('rizz')">Rizz Lines</button>
+  <button onclick="showSection('quiz')">Love Quiz</button>
+  <button onclick="showSection('diary')">Love Diary</button>
+  <button onclick="showSection('reminder')">Reminders</button>
+  <button onclick="showSection('challenges')">Challenges</button>
+</nav>
+
+<main>
+
+<!-- 💬 RIZZ LINES -->
+<section id="rizz" class="active">
+  <div class="section-card">
+    <h2>💬 Daily Rizz Line</h2>
+    <p id="rizz-line">Loading your daily Rizz...</p>
+    <button class="rizz-btn" onclick="nextRizz()">Next Line 💞</button>
+    <button class="rizz-btn" onclick="saveFavorite()">❤️ Save Favorite</button>
+    <h3 style="margin-top:15px;">Saved Favorites:</h3>
+    <div id="favorites" class="fav-list"></div>
+  </div>
+</section>
+
+<!-- 💕 QUIZ -->
+<section id="quiz">
+  <div class="section-card">
+    <h2>💕 Love Quiz</h2>
+    <p>Answer a few fun questions to see your love compatibility!</p>
+    <div id="quiz-box">
+      <p id="quiz-question"></p>
+      <div id="quiz-options"></div>
+      <button class="rizz-btn" onclick="nextQuestion()">Next</button>
+      <h3 id="quiz-result" style="margin-top:1rem;"></h3>
+    </div>
+  </div>
+</section>
+
+<!-- 📖 DIARY -->
+<section id="diary">
+  <div class="section-card">
+    <h2>📖 Love Diary</h2>
+    <textarea id="diary-text" placeholder="Write your thoughts, memories, or messages here..."></textarea>
+    <button class="rizz-btn" onclick="saveDiary()">Save Entry 💌</button>
+    <h3 style="margin-top:15px;">Saved Notes:</h3>
+    <div id="diary-list"></div>
+  </div>
+</section>
+
+<!-- 🎉 REMINDER -->
+<section id="reminder">
+  <div class="section-card">
+    <h2>🎉 Anniversary & Date Reminders</h2>
+    <input type="text" id="reminder-title" placeholder="Occasion (e.g., Anniversary)">
+    <input type="date" id="reminder-date">
+    <button class="rizz-btn" onclick="addReminder()">Add Reminder 📅</button>
+    <div id="reminder-list"></div>
+  </div>
+</section>
+
+<!-- 🫶 CHALLENGES -->
+<section id="challenges">
+  <div class="section-card">
+    <h2>🫶 Couple Challenges</h2>
+    <p id="challenge-text">Ready for your next challenge?</p>
+    <button class="rizz-btn" onclick="nextChallenge()">Next Challenge 🎯</button>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>© 2025 Rizz App | Built by <a href="https://rachitpokhrel.com.np" target="_blank">Rachit Pokhrel</a></p>
+  <div class="socials">
+    <i class="fa-brands fa-facebook"></i>
+    <i class="fa-brands fa-instagram"></i>
+    <i class="fa-brands fa-x-twitter"></i>
+    <i class="fa-brands fa-youtube"></i>
+  </div>
+</footer>
+
+<script>
+// 🌸 NAV SWITCH
+function showSection(id){
+  document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
+  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  event.target.classList.add("active");
+}
+
+// 💬 RIZZ LINES
+const rizzLines=[
+  "You're my favorite notification every day 💌",
+  "Even Wi-Fi can’t connect us better than our hearts 💞",
+  "If kisses were code, I’d write an infinite loop 😘",
+  "You + Me = Perfect Algorithm 💕",
+  "You're my constant in this ever-changing world 💜",
+  "Are you a debugger? Because you fix everything in me 💫"
+];
+let rizzIndex=0;
+const rizzDisplay=document.getElementById("rizz-line");
+const favorites=document.getElementById("favorites");
+
+function loadFavorites(){
+  const saved=JSON.parse(localStorage.getItem("favorites"))||[];
+  favorites.innerHTML="";
+  saved.forEach(text=>{
+    const item=document.createElement("div");
+    item.classList.add("fav-item");
+    item.textContent=text;
+    favorites.appendChild(item);
+  });
+}
+function nextRizz(){
+  rizzIndex=(rizzIndex+1)%rizzLines.length;
+  rizzDisplay.textContent=rizzLines[rizzIndex];
+}
+function saveFavorite(){
+  const text=rizzLines[rizzIndex];
+  let saved=JSON.parse(localStorage.getItem("favorites"))||[];
+  saved.push(text);
+  localStorage.setItem("favorites",JSON.stringify(saved));
+  loadFavorites();
+}
+rizzDisplay.textContent=rizzLines[rizzIndex];
+loadFavorites();
+
+// 💕 QUIZ
+const quizData=[
+  {q:"How often do you text your partner?",a:["All day","Once a day","Sometimes"],c:0},
+  {q:"What’s your love language?",a:["Words","Gifts","Time together"],c:2},
+  {q:"Who apologizes first?",a:["Me","Them","Both"],c:2}
+];
+let quizIndex=0,score=0;
+const quizQ=document.getElementById("quiz-question");
+const quizOpt=document.getElementById("quiz-options");
+const quizRes=document.getElementById("quiz-result");
+function loadQuestion(){
+  quizRes.textContent="";
+  quizOpt.innerHTML="";
+  if(quizIndex<quizData.length){
+    quizQ.textContent=quizData[quizIndex].q;
+    quizData[quizIndex].a.forEach((ans,i)=>{
+      const btn=document.createElement("button");
+      btn.textContent=ans;
+      btn.className="rizz-btn";
+      btn.onclick=()=>{if(i===quizData[quizIndex].c)score++;nextQuestion();};
+      quizOpt.appendChild(btn);
+    });
+  } else {
+    quizQ.textContent="Quiz Completed!";
+    quizOpt.innerHTML="";
+    quizRes.textContent=`Your Love Compatibility Score: ${score}/${quizData.length}`;
+    quizIndex=0;score=0;
+  }
+}
+function nextQuestion(){quizIndex++;loadQuestion();}
+loadQuestion();
+
+// 📖 DIARY
+function loadDiary(){
+  const entries=JSON.parse(localStorage.getItem("diary"))||[];
+  const list=document.getElementById("diary-list");
+  list.innerHTML="";
+  entries.forEach(text=>{
+    const div=document.createElement("div");
+    div.classList.add("note");
+    div.textContent=text;
+    list.appendChild(div);
+  });
+}
+function saveDiary(){
+  const text=document.getElementById("diary-text").value.trim();
+  if(!text)return;
+  const entries=JSON.parse(localStorage.getItem("diary"))||[];
+  entries.push(text);
+  localStorage.setItem("diary",JSON.stringify(entries));
+  document.getElementById("diary-text").value="";
+  loadDiary();
+}
+loadDiary();
+
+// 🎉 REMINDERS
+function loadReminders(){
+  const list=document.getElementById("reminder-list");
+  list.innerHTML="";
+  const saved=JSON.parse(localStorage.getItem("reminders"))||[];
+  saved.forEach(r=>{
+    const div=document.createElement("div");
+    div.classList.add("reminder-item");
+    div.textContent=`${r.title} - ${new Date(r.date).toDateString()}`;
+    list.appendChild(div);
+  });
+}
+function addReminder(){
+  const title=document.getElementById("reminder-title").value;
+  const date=document.getElementById("reminder-date").value;
+  if(!title||!date)return alert("Enter both title and date!");
+  const saved=JSON.parse(localStorage.getItem("reminders"))||[];
+  saved.push({title,date});
+  localStorage.setItem("reminders",JSON.stringify(saved));
+  document.getElementById("reminder-title").value="";
+  document.getElementById("reminder-date").value="";
+  loadReminders();
+}
+loadReminders();
+
+// 🫶 CHALLENGES
+const challenges=[
+  "Truth: What was your first impression of your partner?",
+  "Dare: Send your partner a random 'I love you' selfie 😘",
+  "Truth: Who said 'I love you' first?",
+  "Dare: Write a 3-line poem for your partner 💜",
+  "Truth: What’s your partner’s cutest habit?"
+];
+let chalIndex=0;
+function nextChallenge(){
+  chalIndex=(chalIndex+1)%challenges.length;
+  document.getElementById("challenge-text").textContent=challenges[chalIndex];
+}
+</script>
+
+</body>
+</html>
