@@ -1,188 +1,323 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rizz App for Couples 💜</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="icon" type="image/png" href="Assets/logo.png">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>RizzMate — Premium UI/UX</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Dancing+Script:wght@600&display=swap"
+        rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 
     <style>
-        /* 🌙 Base */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+        :root {
+            --bg1: #0b0014;
+            --bg2: #20002d;
+            --neon: #b57bff;
+            --accent1: #7b2ff7;
+            --accent2: #f107a3;
+            --muted: #d9cdee;
+            --glass: rgba(255, 255, 255, 0.04);
         }
 
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
         body {
-            background: linear-gradient(135deg, #150021, #2e0042);
+            height: 100%;
+            margin: 0;
+            font-family: "Poppins", sans-serif;
+            background: linear-gradient(180deg, var(--bg1), var(--bg2));
             color: #fff;
+            -webkit-font-smoothing: antialiased;
+            overflow: hidden;
+        }
+
+        .wrap {
+            max-width: 1100px;
+            margin: 18px auto;
+            padding: 0 16px;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
+            gap: 14px;
         }
 
+        /* Header */
         header {
-            text-align: center;
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 8px 34px rgba(123, 47, 247, 0.08);
         }
 
-        header h1 {
-            color: #e29bff;
-            font-size: 1.8rem;
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .title {
             font-weight: 700;
+            font-size: 29px;
         }
 
+        .subtitle {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        /* Nav pills */
         nav {
             display: flex;
+            justify-content: center;
+        }
+
+        .nav-wrap {
+            display: flex;
+            gap: 10px;
             flex-wrap: wrap;
             justify-content: center;
-            gap: .7rem;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 1rem;
+            padding: 10px 8px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(6px);
         }
 
-        nav button {
-            background: none;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: .6rem 1rem;
-            color: #fff;
-            border-radius: 25px;
+        .nav-btn {
+            padding: 12px 28px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: transparent;
+            color: var(--neon);
+            font-weight: 600;
             cursor: pointer;
-            transition: .3s;
-            font-weight: 500;
-        }
-
-        nav button.active,
-        nav button:hover {
-            background: #a855f7;
-            border-color: #a855f7;
-        }
-
-        main {
-            flex: 1;
-            padding: 2rem 1.5rem;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-        }
-
-        section {
-            display: none;
-            width: 100%;
-            max-width: 600px;
+            transition: all .18s;
+            min-width: 150px;
             text-align: center;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, .3);
         }
 
-        section.active {
-            display: block;
-            animation: fadeIn .4s;
+        .nav-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 36px rgba(123, 47, 247, 0.08);
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .section-card h2 {
-            color: #d8b4fe;
-            margin-bottom: 1rem;
-        }
-
-        button {
-            outline: none;
-        }
-
-        .rizz-btn {
-            background: #a855f7;
+        .nav-btn.active {
+            background: linear-gradient(90deg, var(--neon), #e6b1ff);
+            color: #210017;
+            box-shadow: 0 18px 60px rgba(181, 123, 255, 0.18);
             border: none;
-            color: #fff;
-            padding: .7rem 1.2rem;
-            border-radius: 8px;
-            margin: .5rem;
-            cursor: pointer;
-            transition: .3s;
         }
 
-        .rizz-btn:hover {
-            background: #c084fc;
+        /* Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 18px;
+        }
+
+        @media(max-width:980px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-btn {
+                min-width: 120px;
+                padding: 10px 18px;
+            }
+        }
+
+
+        .card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+            border-radius: 12px;
+            padding: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+        }
+
+        /* Rizz Card */
+        .category-bar {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+
+        .cat {
+            padding: 8px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            background: transparent;
+            color: var(--muted);
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .cat.active {
+            background: linear-gradient(90deg, var(--accent1), var(--accent2));
+            color: #fff;
+            box-shadow: 0 12px 40px rgba(123, 47, 247, 0.12);
+        }
+
+        .rizz-card {
+            min-height: 160px;
+            border-radius: 10px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(123, 47, 247, 0.10), rgba(241, 7, 163, 0.03));
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .rizz-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 20px;
+            margin: 4px 0;
+            color: #fff;
+            line-height: 1.3;
+            padding: 0 8px;
+            word-break: break-word;
+        }
+
+        .rizz-meta {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .control-row {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: transparent;
+            color: var(--muted);
+            cursor: pointer;
+            font-weight: 600;
+            transition: all .16s;
+        }
+
+        .btn.primary {
+            background: linear-gradient(90deg, var(--accent1), var(--accent2));
+            color: #fff;
+            border: none;
+            box-shadow: 0 12px 40px rgba(123, 47, 247, 0.12);
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
         }
 
         .fav-list {
-            margin-top: .8rem;
-            background: rgba(255, 255, 255, .07);
-            border-radius: 10px;
-            padding: 1rem;
-            max-height: 150px;
-            overflow-y: auto;
+            max-height: 160px;
+            overflow: auto;
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 100%;
         }
 
         .fav-item {
-            margin: .3rem 0;
-            font-size: .95rem;
-            background: rgba(255, 255, 255, .1);
-            padding: .4rem .7rem;
-            border-radius: 6px;
+            padding: 8px;
+            border-radius: 10px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            font-size: 14px;
+            word-break: break-word;
         }
 
+        /* Right utilities */
+        .small-title {
+            font-weight: 700;
+            color: var(--muted);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Quiz */
+        .quiz-opts {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .opt {
+            padding: 10px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.02);
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .opt:hover {
+            background: rgba(123, 47, 247, 0.10);
+        }
+
+        /* Diary / Reminders / Challenges list */
         textarea,
-        input[type="text"],
-        input[type="date"] {
+        input {
             width: 100%;
-            padding: .6rem;
-            margin: .5rem 0;
-            border: none;
+            padding: 10px;
             border-radius: 8px;
-            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            background: rgba(255, 255, 255, 0.02);
             color: #fff;
-        }
-
-        textarea:focus,
-        input:focus {
-            outline: 1px solid #bb86fc;
+            font-size: 14px;
         }
 
         .note {
-            background: rgba(255, 255, 255, 0.1);
-            padding: .6rem;
+            padding: 10px;
             border-radius: 8px;
-            margin: .5rem 0;
-            text-align: left;
+            background: rgba(255, 255, 255, 0.02);
+            margin-bottom: 8px;
         }
 
-        .reminder-item {
-            background: rgba(255, 255, 255, 0.1);
-            padding: .6rem;
-            border-radius: 8px;
-            margin: .5rem 0;
-        }
-
+        /* Footer */
         footer {
-            background: rgba(255, 255, 255, 0.05);
-            text-align: center;
-            padding: 1.2rem 1rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+            backdrop-filter: blur(6px);
+            text-align: center;           
+            align-items: center;
+            padding: 1.5rem 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            margin-top: 18px;
+            padding: 12px;
+            border-radius: 10px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+            justify-content: space-between;
         }
 
         footer p {
             color: #ccc;
+            margin-bottom: 0.8rem;
         }
 
         footer a {
@@ -195,262 +330,556 @@
             display: flex;
             justify-content: center;
             gap: 1rem;
-            margin-top: .7rem;
+            margin-top: 0.8rem;
         }
 
         .socials i {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             cursor: pointer;
-            transition: .3s;
+            transition: 0.3s;
         }
 
         .socials i:hover {
             color: #e29bff;
         }
 
-        @media(max-width:768px) {
-            nav {
-                gap: .5rem;
-            }
+        /* Tiny */
+        .muted {
+            color: var(--muted);
+            font-size: 13px;
+        }
 
-            nav button {
-                padding: .5rem .8rem;
-                font-size: .9rem;
-            }
-
-            section {
-                padding: 1.5rem;
-            }
+        /* toast nicer */
+        .rizz-toast {
+            transition: opacity .35s ease, transform .35s ease;
         }
     </style>
 </head>
 
 <body>
-
-    <header>
-        <h1>Rizz App for Couples 💜</h1>
-    </header>
-
-    <nav>
-        <button class="active" onclick="showSection('rizz')">Rizz Lines</button>
-        <button onclick="showSection('quiz')">Love Quiz</button>
-        <button onclick="showSection('diary')">Love Diary</button>
-        <button onclick="showSection('reminder')">Reminders</button>
-        <button onclick="showSection('challenges')">Challenges</button>
-    </nav>
-
-    <main>
-
-        <!-- 💬 RIZZ LINES -->
-        <section id="rizz" class="active">
-            <div class="section-card">
-                <h2>💬 Daily Rizz Line</h2>
-                <p id="rizz-line">Loading your daily Rizz...</p>
-                <button class="rizz-btn" onclick="nextRizz()">Next Line 💞</button>
-                <button class="rizz-btn" onclick="saveFavorite()">❤️ Save Favorite</button>
-                <h3 style="margin-top:15px;">Saved Favorites:</h3>
-                <div id="favorites" class="fav-list"></div>
-            </div>
-        </section>
-
-        <!-- 💕 QUIZ -->
-        <section id="quiz">
-            <div class="section-card">
-                <h2>💕 Love Quiz</h2>
-                <p>Answer a few fun questions to see your love compatibility!</p>
-                <div id="quiz-box">
-                    <p id="quiz-question"></p>
-                    <div id="quiz-options"></div>
-                    <button class="rizz-btn" onclick="nextQuestion()">Next</button>
-                    <h3 id="quiz-result" style="margin-top:1rem;"></h3>
+    <div class="wrap">
+        <header>
+            <div class="brand">
+                <div>
+                    <div class="title" style="color: #9B5DE5;">RizzMate</div>
+                    <div class="subtitle">Your daily dose of love, laughter & connection.</div>
                 </div>
             </div>
-        </section>
 
-        <!-- 📖 DIARY -->
-        <section id="diary">
-            <div class="section-card">
-                <h2>📖 Love Diary</h2>
-                <textarea id="diary-text" placeholder="Write your thoughts, memories, or messages here..."></textarea>
-                <button class="rizz-btn" onclick="saveDiary()">Save Entry 💌</button>
-                <h3 style="margin-top:15px;">Saved Notes:</h3>
-                <div id="diary-list"></div>
+            <div style="display:flex;gap:8px;align-items:center">
+                <button id="exportBtn" class="btn">Export</button>
+                <button id="clearBtn" class="btn">Clear All</button>
             </div>
-        </section>
+        </header>
 
-        <!-- 🎉 REMINDER -->
-        <section id="reminder">
-            <div class="section-card">
-                <h2>🎉 Anniversary & Date Reminders</h2>
-                <input type="text" id="reminder-title" placeholder="Occasion (e.g., Anniversary)">
-                <input type="date" id="reminder-date">
-                <button class="rizz-btn" onclick="addReminder()">Add Reminder 📅</button>
-                <div id="reminder-list"></div>
+        <nav>
+            <div class="nav-wrap">
+                <button class="nav-btn active" data-sec="rizz">Rizz Lines</button>
+                <button class="nav-btn" data-sec="quiz">Love Quiz</button>
+                <button class="nav-btn" data-sec="diary">Love Diary</button>
+                <button class="nav-btn" data-sec="reminder">Reminders</button>
+                <button class="nav-btn" data-sec="challenges">Challenges</button>
             </div>
-        </section>
+        </nav>
+        <div class="grid">
+            <!-- LEFT: main -->
+            <div>
+                <!-- RIZZ -->
 
-        <!-- 🫶 CHALLENGES -->
-        <section id="challenges">
-            <div class="section-card">
-                <h2>🫶 Couple Challenges</h2>
-                <p id="challenge-text">Ready for your next challenge?</p>
-                <button class="rizz-btn" onclick="nextChallenge()">Next Challenge 🎯</button>
+                <section id="rizzSection" class="card">
+                    <div class="small-title">💬 Rizz Lines <span class="muted">— choose a category</span>
+                    </div>
+                    <div class="category-bar" id="categoryBar"></div>
+
+                    <div class="rizz-card">
+                        <div class="rizz-meta">
+                            <div id="currCat" class="muted">Category</div>
+                            <div style="display:flex;gap:8px">
+                                <button id="copyBtn" class="btn" title="Copy">Copy</button>
+                                <button id="shareBtn" class="btn" title="Share">Share</button>
+                                <button id="saveFavBtn" class="btn" title="Save Favorite">♡</button>
+                            </div>
+                        </div>
+
+                        <div class="rizz-text" id="rizzText">Press Next to get a Rizz line.</div>
+
+                        <div class="control-row">
+                            <button id="prevBtn" class="btn">◀ Prev</button>
+                            <button id="nextBtn" class="btn primary">Next Line 💞</button>
+                            <button id="shuffleBtn" class="btn">Shuffle ✨</button>
+                        </div>
+
+                        <div
+                            style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;width:100%">
+                            <div class="muted">Favorites</div>
+                            <div style="display:flex;gap:8px">
+                                <button id="clearFavBtn" class="btn">Clear</button>
+                            </div>
+                        </div>
+
+                        <div class="fav-list" id="favList"></div>
+                    </div>
+                </section>
+
+                <!-- QUIZ -->
+                <section id="quizSection" class="card" style="display:none">
+                    <div class="small-title">💘 Love Quiz <span class="muted">— 10 questions</span></div>
+                    <div id="quizArea" style="margin-top:12px"></div>
+                </section>
             </div>
-        </section>
 
-    </main>
+            <!-- RIGHT: tools -->
+            <aside>
+                <!-- Diary -->
+                <div id="diarySection" class="card" style="display:none">
+                    <div class="small-title">📖 Love Diary <span class="muted">— private</span></div>
+                    <textarea id="diaryInput" placeholder="Write a sweet note..."></textarea>
+                    <div style="display:flex;gap:8px;margin-top:8px">
+                        <button id="saveDiary" class="btn primary">Save</button>
+                        <button id="refreshDiary" class="btn">Refresh</button>
+                    </div>
+                    <div id="diaryList" style="margin-top:12px"></div>
+                </div>
 
-    <footer>
-        <p>© 2025 Rizz App | Built by <a href="https://rachitpokhrel.com.np" target="_blank">Rachit Pokhrel</a></p>
-        <div class="socials">
-            <i class="fa-brands fa-facebook"></i>
-            <i class="fa-brands fa-instagram"></i>
-            <i class="fa-brands fa-x-twitter"></i>
-            <i class="fa-brands fa-youtube"></i>
+                <!-- Reminders -->
+                <div id="remSection" class="card" style="display:none">
+                    <div class="small-title">🎉 Reminders</div>
+                    <input id="remTitle" type="text" placeholder="Event (Anniversary)" />
+                    <input id="remDate" type="date" style="margin-top:8px" />
+                    <div style="display:flex;gap:8px;margin-top:8px">
+                        <button id="addRem" class="btn primary">Add</button>
+                        <button id="refreshRem" class="btn">Refresh</button>
+                    </div>
+                    <div id="remList" style="margin-top:12px"></div>
+                </div>
+
+                <!-- Challenges -->
+                <div id="chalSection" class="card" style="display:none">
+                    <div class="small-title">🎯 Truth & Dare</div>
+                    <div style="display:flex;gap:8px;margin-top:8px">
+                        <button id="truthBtn" class="btn">Truth</button>
+                        <button id="dareBtn" class="btn">Dare</button>
+                    </div>
+                    <div id="challengeText" class="note"
+                        style="margin-top:12px;min-height:60px;display:flex;align-items:center">Tap Truth or
+                        Dare</div>
+                </div>
+            </aside>
         </div>
-    </footer>
+
+        <footer>
+            <p>© 2025 RizzMate | Built by <a href="https://rachitpokhrel.com.np" target="_blank">Rachit Pokhrel</a></p>
+            <div class="socials">
+                <i class="fa-brands fa-facebook"></i>
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-x-twitter"></i>
+                <i class="fa-brands fa-youtube"></i>
+            </div>
+        </footer>
+    </div>
 
     <script>
-        // 🌸 NAV SWITCH
-        function showSection(id) {
-            document.querySelectorAll("nav button").forEach(b => b.classList.remove("active"));
-            document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
-            document.getElementById(id).classList.add("active");
-            event.target.classList.add("active");
+        /* -----------------------------
+           DATA (≈15 lines per category)
+           -----------------------------*/
+        const RIZZ = {
+            Flirty: [
+                "Are you a magician? Because everyone else disappears when I look at you.",
+                "Do you have a name or can I call you mine?",
+                "If beauty were time, you'd be eternity.",
+                "I must be a snowflake — I've fallen for you.",
+                "If kisses were code I'd write infinite loops for you.",
+                "Your smile breaks my debug loop.",
+                "Are you Wi-Fi? Because I'm feeling a connection.",
+                "My heart skipped a beat — need a patch.",
+                "Your hand looks heavy — can I hold it?",
+                "You must be copper + tellurium — you're Cu-Te.",
+                "I'm not a photographer but I can picture us.",
+                "If I rearranged the alphabet I'd put U and I together.",
+                "You make my dark mode glow.",
+                "Can I follow you home? Cause my parents always told me to follow my dreams.",
+                "Meeting you fixed a bug in my life."
+            ],
+            Cute: [
+                "You make me smile like an idiot for no reason.",
+                "If I had a star for every time you brightened my day, I'd have a galaxy.",
+                "Your laugh is my favorite sound.",
+                "Let's be weird together forever.",
+                "You’re the sprinkles on my ice cream.",
+                "My heart races at the thought of you.",
+                "I'd choose you in every lifetime.",
+                "You're my favorite notification.",
+                "I could watch you for hours and never get bored.",
+                "You turn ordinary moments into memories.",
+                "You’re cuter than a basket of puppies.",
+                "Your smile melts my stress away.",
+                "I’d share my fries with you.",
+                "You saved my best days for me.",
+                "You make rainy days cozy."
+            ],
+            Funny: [
+                "Are you Google? Because you have everything I'm searching for.",
+                "Do you have a map? I keep getting lost in your eyes.",
+                "If we were socks, we'd make a perfect pair.",
+                "You must be a parking ticket — you've got fine written all over you.",
+                "If we were a story, we'd be a bestseller in comedy.",
+                "Are you made of beryllium, gold and titanium? Because you're Be-Au-Ti-Ful.",
+                "My love for you is like diarrhea — I just can’t hold it in. (silly!)",
+                "Life without you would be like a broken pencil — pointless.",
+                "Do you like Star Wars? Because Yoda one for me.",
+                "You must be tired — you’ve been running in my mind.",
+                "I’d tell you a chemistry joke but I worry about the reaction.",
+                "You’re my favorite notification, except when it's low battery.",
+                "If cuteness was a crime, you'd be guilty.",
+                "We fit together like Wi-Fi and passwords.",
+                "You stole my heart — can I get your ID?"
+            ],
+            Loyal: [
+                "I choose you — again and again.",
+                "You're my home, no matter where we are.",
+                "My favorite place is next to you.",
+                "I promise to be your safe place.",
+                "With you, I am my best self.",
+                "I'll stand by you through storms and sunshine.",
+                "Love isn’t perfect, but I’ll be perfect for you.",
+                "I value your heart more than anything else.",
+                "You and I: we're a team for life.",
+                "I’ll keep your secrets like treasures.",
+                "My loyalty is louder than words.",
+                "I’ll grow with you and never leave your side.",
+                "I’ll choose our us every day.",
+                "Your happiness is my mission.",
+                "I’ll protect our love like a rare gem."
+            ]
+        };
+
+        /* -----------------------------
+           STATE + localStorage keys
+           -----------------------------*/
+        // make default category the first key (robust if keys change)
+        let currentCat = Object.keys(RIZZ)[0] || 'Flirty';
+
+        // dynamic idx initialization so categories added later won't break code
+        const idx = {};
+        Object.keys(RIZZ).forEach(k => idx[k] = 0);
+
+        let favorites = JSON.parse(localStorage.getItem('rizz_favs_v3') || '[]');
+        let diary = JSON.parse(localStorage.getItem('rizz_diary_v3') || '[]');
+        let reminders = JSON.parse(localStorage.getItem('rizz_rem_v3') || '[]');
+
+        /* -----------------------------
+           UI refs
+           -----------------------------*/
+        const categoryBar = document.getElementById('categoryBar');
+        const rizzText = document.getElementById('rizzText');
+        const currCatEl = document.getElementById('currCat');
+        const favList = document.getElementById('favList');
+        const navBtns = document.querySelectorAll('.nav-btn');
+
+        /* -----------------------------
+           NAV behavior
+           -----------------------------*/
+        navBtns.forEach(b => {
+            b.addEventListener('click', () => {
+                navBtns.forEach(x => x.classList.remove('active'));
+                b.classList.add('active');
+                const sec = b.dataset.sec;
+                showSection(sec);
+            });
+        });
+
+        function showSection(sec) {
+            // hide all main sections (left ones)
+            document.getElementById('rizzSection').style.display = (sec === 'rizz') ? 'block' : 'none';
+            document.getElementById('quizSection').style.display = (sec === 'quiz') ? 'block' : 'none';
+            // right column cards
+            document.getElementById('diarySection').style.display = (sec === 'diary') ? 'block' : 'none';
+            document.getElementById('remSection').style.display = (sec === 'reminder') ? 'block' : 'none';
+            document.getElementById('chalSection').style.display = (sec === 'challenges') ? 'block' : 'none';
+            // scroll into view a bit
+            setTimeout(() => { document.querySelector('.wrap').scrollIntoView({ behavior: 'smooth' }); }, 50);
         }
 
-        // 💬 RIZZ LINES
-        const rizzLines = [
-            "You're my favorite notification every day 💌",
-            "Even Wi-Fi can’t connect us better than our hearts 💞",
-            "If kisses were code, I’d write an infinite loop 😘",
-            "You + Me = Perfect Algorithm 💕",
-            "You're my constant in this ever-changing world 💜",
-            "Are you a debugger? Because you fix everything in me 💫"
-        ];
-        let rizzIndex = 0;
-        const rizzDisplay = document.getElementById("rizz-line");
-        const favorites = document.getElementById("favorites");
-
-        function loadFavorites() {
-            const saved = JSON.parse(localStorage.getItem("favorites")) || [];
-            favorites.innerHTML = "";
-            saved.forEach(text => {
-                const item = document.createElement("div");
-                item.classList.add("fav-item");
-                item.textContent = text;
-                favorites.appendChild(item);
+        /* -----------------------------
+           Build category buttons + initial render
+           -----------------------------*/
+        function buildCategories() {
+            categoryBar.innerHTML = '';
+            Object.keys(RIZZ).forEach(cat => {
+                const btn = document.createElement('button');
+                btn.className = 'cat' + (cat === currentCat ? ' active' : '');
+                btn.innerText = cat;
+                btn.onclick = () => {
+                    currentCat = cat;
+                    // ensure idx exists
+                    if (typeof idx[currentCat] === 'undefined') idx[currentCat] = 0;
+                    document.querySelectorAll('.cat').forEach(c => c.classList.remove('active'));
+                    btn.classList.add('active');
+                    renderRizz();
+                };
+                categoryBar.appendChild(btn);
             });
         }
-        function nextRizz() {
-            rizzIndex = (rizzIndex + 1) % rizzLines.length;
-            rizzDisplay.textContent = rizzLines[rizzIndex];
-        }
-        function saveFavorite() {
-            const text = rizzLines[rizzIndex];
-            let saved = JSON.parse(localStorage.getItem("favorites")) || [];
-            saved.push(text);
-            localStorage.setItem("favorites", JSON.stringify(saved));
-            loadFavorites();
-        }
-        rizzDisplay.textContent = rizzLines[rizzIndex];
-        loadFavorites();
 
-        // 💕 QUIZ
-        const quizData = [
-            { q: "How often do you text your partner?", a: ["All day", "Once a day", "Sometimes"], c: 0 },
-            { q: "What’s your love language?", a: ["Words", "Gifts", "Time together"], c: 2 },
-            { q: "Who apologizes first?", a: ["Me", "Them", "Both"], c: 2 }
-        ];
-        let quizIndex = 0, score = 0;
-        const quizQ = document.getElementById("quiz-question");
-        const quizOpt = document.getElementById("quiz-options");
-        const quizRes = document.getElementById("quiz-result");
-        function loadQuestion() {
-            quizRes.textContent = "";
-            quizOpt.innerHTML = "";
-            if (quizIndex < quizData.length) {
-                quizQ.textContent = quizData[quizIndex].q;
-                quizData[quizIndex].a.forEach((ans, i) => {
-                    const btn = document.createElement("button");
-                    btn.textContent = ans;
-                    btn.className = "rizz-btn";
-                    btn.onclick = () => { if (i === quizData[quizIndex].c) score++; nextQuestion(); };
-                    quizOpt.appendChild(btn);
-                });
-            } else {
-                quizQ.textContent = "Quiz Completed!";
-                quizOpt.innerHTML = "";
-                quizRes.textContent = `Your Love Compatibility Score: ${score}/${quizData.length}`;
-                quizIndex = 0; score = 0;
+        function renderRizz() {
+            const arr = RIZZ[currentCat] || [];
+            if (!arr.length) {
+                rizzText.innerText = 'No lines available for this category.';
+                currCatEl.innerText = currentCat;
+                return;
             }
+            // ensure index is in safe bounds
+            if (typeof idx[currentCat] === 'undefined') idx[currentCat] = 0;
+            const i = ((idx[currentCat] % arr.length) + arr.length) % arr.length;
+            rizzText.innerText = arr[i];
+            currCatEl.innerText = currentCat;
+            renderFavs();
         }
-        function nextQuestion() { quizIndex++; loadQuestion(); }
-        loadQuestion();
 
-        // 📖 DIARY
-        function loadDiary() {
-            const entries = JSON.parse(localStorage.getItem("diary")) || [];
-            const list = document.getElementById("diary-list");
-            list.innerHTML = "";
-            entries.forEach(text => {
-                const div = document.createElement("div");
-                div.classList.add("note");
-                div.textContent = text;
-                list.appendChild(div);
-            });
-        }
-        function saveDiary() {
-            const text = document.getElementById("diary-text").value.trim();
-            if (!text) return;
-            const entries = JSON.parse(localStorage.getItem("diary")) || [];
-            entries.push(text);
-            localStorage.setItem("diary", JSON.stringify(entries));
-            document.getElementById("diary-text").value = "";
-            loadDiary();
-        }
-        loadDiary();
+        /* next / prev / shuffle */
+        document.getElementById('nextBtn').addEventListener('click', () => { idx[currentCat] = (idx[currentCat] + 1) % (RIZZ[currentCat].length || 1); renderRizz(); });
+        document.getElementById('prevBtn').addEventListener('click', () => { idx[currentCat] = (idx[currentCat] - 1 + (RIZZ[currentCat].length || 1)) % (RIZZ[currentCat].length || 1); renderRizz(); });
+        document.getElementById('shuffleBtn').addEventListener('click', () => { idx[currentCat] = Math.floor(Math.random() * (RIZZ[currentCat].length || 1)); renderRizz(); });
+        document.getElementById('nextBtn').addEventListener('dblclick', () => exportFavorites()); // small shortcut
 
-        // 🎉 REMINDERS
-        function loadReminders() {
-            const list = document.getElementById("reminder-list");
-            list.innerHTML = "";
-            const saved = JSON.parse(localStorage.getItem("reminders")) || [];
-            saved.forEach(r => {
-                const div = document.createElement("div");
-                div.classList.add("reminder-item");
-                div.textContent = `${r.title} - ${new Date(r.date).toDateString()}`;
-                list.appendChild(div);
-            });
-        }
-        function addReminder() {
-            const title = document.getElementById("reminder-title").value;
-            const date = document.getElementById("reminder-date").value;
-            if (!title || !date) return alert("Enter both title and date!");
-            const saved = JSON.parse(localStorage.getItem("reminders")) || [];
-            saved.push({ title, date });
-            localStorage.setItem("reminders", JSON.stringify(saved));
-            document.getElementById("reminder-title").value = "";
-            document.getElementById("reminder-date").value = "";
-            loadReminders();
-        }
-        loadReminders();
+        /* copy & share */
+        document.getElementById('copyBtn').addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText(rizzText.innerText);
+                toast('Copied to clipboard ✅');
+            } catch (e) { toast('Copy failed'); }
+        });
+        document.getElementById('shareBtn').addEventListener('click', async () => {
+            const text = rizzText.innerText;
+            if (navigator.share) {
+                try { await navigator.share({ title: 'Rizz', text }); } catch (e) { }
+            } else {
+                try { await navigator.clipboard.writeText(text); toast('Copied (share fallback) ✅'); } catch (e) { toast('Share not supported'); }
+            }
+        });
 
-        // 🫶 CHALLENGES
-        const challenges = [
-            "Truth: What was your first impression of your partner?",
-            "Dare: Send your partner a random 'I love you' selfie 😘",
-            "Truth: Who said 'I love you' first?",
-            "Dare: Write a 3-line poem for your partner 💜",
-            "Truth: What’s your partner’s cutest habit?"
+        /* favorites */
+        document.getElementById('saveFavBtn').addEventListener('click', () => {
+            const t = rizzText.innerText;
+            if (!t) return;
+            if (!favorites.includes(t)) {
+                favorites.unshift(t);
+                localStorage.setItem('rizz_favs_v3', JSON.stringify(favorites));
+                renderFavs();
+                toast('Saved to favorites 💜');
+            } else toast('Already in favorites');
+        });
+        document.getElementById('clearFavBtn').addEventListener('click', () => { if (confirm('Clear all favorites?')) { favorites = []; localStorage.removeItem('rizz_favs_v3'); renderFavs(); } });
+        function renderFavs() {
+            if (!favorites || !favorites.length) { favList.innerHTML = '<div class="muted">No favorites yet — tap ♡</div>'; return; }
+            favList.innerHTML = favorites.map(f => `<div class="fav-item">${escapeHtml(f)}</div>`).join('');
+        }
+
+        /* Export / Import favorites + diary + reminders */
+        document.getElementById('exportBtn').addEventListener('click', exportFavorites);
+        function exportFavorites() {
+            const payload = { favorites, diary, reminders };
+            const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a'); a.href = url; a.download = 'rizz_backup.json'; a.click(); URL.revokeObjectURL(url);
+            toast('Exported backup ✅');
+        }
+        document.getElementById('importBtn').addEventListener('click', () => {
+            const input = document.createElement('input'); input.type = 'file'; input.accept = 'application/json';
+            input.onchange = e => {
+                const file = e.target.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = ev => {
+                    try {
+                        const data = JSON.parse(ev.target.result);
+                        if (Array.isArray(data.favorites)) favorites = data.favorites;
+                        if (Array.isArray(data.diary)) diary = data.diary;
+                        if (Array.isArray(data.reminders)) reminders = data.reminders;
+                        // persist
+                        localStorage.setItem('rizz_favs_v3', JSON.stringify(favorites));
+                        localStorage.setItem('rizz_diary_v3', JSON.stringify(diary));
+                        localStorage.setItem('rizz_rem_v3', JSON.stringify(reminders));
+                        renderAll();
+                        toast('Imported backup ✅');
+                    } catch (err) { toast('Invalid file'); }
+                };
+                reader.readAsText(file);
+            };
+            input.click();
+        });
+
+        /* Clear all storage */
+        document.getElementById('clearBtn').addEventListener('click', () => {
+            if (confirm('Clear all local data?')) {
+                localStorage.clear();
+                favorites = [];
+                diary = [];
+                reminders = [];
+                // reset indexes
+                Object.keys(idx).forEach(k => idx[k] = 0);
+                renderAll();
+                toast('Cleared');
+            }
+        });
+
+        /* -----------------------------
+           Quiz
+           -----------------------------*/
+        const QUIZ_POOL = [
+            { q: "How often do you check on your partner?", a: ["Always", "Sometimes", "Rarely"], c: 0 },
+            { q: "Best date idea?", a: ["Movie night", "Candle dinner", "Long drive"], c: 2 },
+            { q: "How do you solve fights?", a: ["Talk", "Ignore", "Wait"], c: 0 },
+            { q: "Who is more romantic?", a: ["Me", "Them", "Both"], c: 2 },
+            { q: "Love language?", a: ["Words", "Gifts", "Time"], c: 2 },
+            { q: "What matters most?", a: ["Trust", "Attraction", "Money"], c: 0 },
+            { q: "Weekend preference?", a: ["Stay in", "Party out", "Road trip"], c: 0 },
+            { q: "Small gift or big gesture?", a: ["Small gift", "Big gesture", "Both"], c: 2 },
+            { q: "Are surprises good?", a: ["Yes", "Sometimes", "No"], c: 0 },
+            { q: "Favorite shared activity?", a: ["Cooking", "Gaming", "Walking"], c: 0 },
+            { q: "Who is more forgetful?", a: ["Me", "Them", "Both"], c: 2 },
+            { q: "Who says sorry first?", a: ["Me", "Them", "Both"], c: 2 },
+            { q: "Which matters more?", a: ["Trust", "Excitement", "Looks"], c: 0 },
+            { q: "How do you show love?", a: ["Acts", "Words", "Gifts"], c: 1 },
+            { q: "Ideal communication?", a: ["Text", "Call", "Meet"], c: 2 }
         ];
-        let chalIndex = 0;
-        function nextChallenge() {
-            chalIndex = (chalIndex + 1) % challenges.length;
-            document.getElementById("challenge-text").textContent = challenges[chalIndex];
-        }
-    </script>
+        let quizQ = [];
+        let qi = 0, qscore = 0;
+        const quizArea = document.getElementById('quizArea');
 
+        function startQuiz() {
+            quizQ = shuffle(QUIZ_POOL).slice(0, 10);
+            qi = 0; qscore = 0;
+            renderQuiz();
+        }
+        function renderQuiz() {
+            if (qi >= quizQ.length) {
+                quizArea.innerHTML = `<div style="font-weight:700">Score: ${qscore}/${quizQ.length}</div><div style="margin-top:8px"><button class="btn primary" onclick="startQuiz()">Retake</button></div>`;
+                return;
+            }
+            const Q = quizQ[qi];
+            quizArea.innerHTML = `<div style="font-weight:700">${escapeHtml(Q.q)}</div><div class="quiz-opts">${Q.a.map((opt, i) => `<div class="opt" onclick="answer(${i})">${escapeHtml(opt)}</div>`).join('')}</div>`;
+        }
+        function answer(i) { if (i === quizQ[qi].c) qscore++; qi++; renderQuiz(); }
+
+        /* -----------------------------
+           Diary
+           -----------------------------*/
+        const DIARY_KEY = 'rizz_diary_v3';
+        const diaryListEl = document.getElementById('diaryList');
+        const diaryInput = document.getElementById('diaryInput');
+
+        document.getElementById('saveDiary').addEventListener('click', () => {
+            const text = diaryInput.value.trim();
+            if (!text) return toast('Write something');
+            const entry = { id: Date.now(), text, date: new Date().toLocaleString() };
+            diary.unshift(entry);
+            localStorage.setItem(DIARY_KEY, JSON.stringify(diary));
+            diaryInput.value = '';
+            renderDiary();
+        });
+        document.getElementById('refreshDiary').addEventListener('click', renderDiary);
+        function renderDiary() {
+            if (!diary || !diary.length) { diaryListEl.innerHTML = '<div class="muted">No notes yet.</div>'; return; }
+            diaryListEl.innerHTML = diary.map(d => `<div class="note"><div style="font-size:12px;color:var(--muted)">${escapeHtml(d.date)}</div><div style="margin-top:6px">${escapeHtml(d.text)}</div><div style="margin-top:8px"><button class="btn" onclick="deleteDiary(${d.id})">Delete</button></div></div>`).join('');
+        }
+        function deleteDiary(id) { diary = diary.filter(x => x.id !== id); localStorage.setItem(DIARY_KEY, JSON.stringify(diary)); renderDiary(); }
+
+        /* -----------------------------
+           Reminders
+           -----------------------------*/
+        const REM_KEY = 'rizz_rem_v3';
+        const remListEl = document.getElementById('remList');
+
+        document.getElementById('addRem').addEventListener('click', () => {
+            const title = document.getElementById('remTitle').value.trim();
+            const date = document.getElementById('remDate').value;
+            if (!title || !date) return toast('Enter title and date');
+            reminders.unshift({ id: Date.now(), title, date });
+            localStorage.setItem(REM_KEY, JSON.stringify(reminders));
+            document.getElementById('remTitle').value = '';
+            document.getElementById('remDate').value = '';
+            renderReminders();
+        });
+        document.getElementById('refreshRem').addEventListener('click', renderReminders);
+        function renderReminders() {
+            if (!reminders || !reminders.length) { remListEl.innerHTML = '<div class="muted">No reminders yet.</div>'; return; }
+            remListEl.innerHTML = reminders.map(r => {
+                const days = daysUntil(r.date);
+                return `<div class="note" style="display:flex;justify-content:space-between;align-items:center"><div><b>${escapeHtml(r.title)}</b><div style="font-size:12px;color:var(--muted)">${escapeHtml(new Date(r.date).toDateString())}</div></div><div style="text-align:right">${days <= 0 ? '<b>Today!</b>' : 'In ' + days + 'd'}<div style="margin-top:8px"><button class="btn" onclick="deleteRem(${r.id})">Delete</button></div></div></div>`;
+            }).join('');
+        }
+        function deleteRem(id) { reminders = reminders.filter(r => r.id !== id); localStorage.setItem(REM_KEY, JSON.stringify(reminders)); renderReminders(); }
+
+        /* -----------------------------
+           Challenges
+           -----------------------------*/
+        const TRUTH = ["What was your first impression of your partner?", "What is your funniest memory together?", "What habit do you find cutest?", "When did you know you loved them?", "What's one secret you haven't told anyone?"];
+        const DARE = ["Send your partner a cute selfie", "Write a 3-line poem and send it", "Give a 30-second hug", "Cook a surprise snack", "Record a silly voice message"];
+        document.getElementById('truthBtn').addEventListener('click', () => pickChallenge('truth'));
+        document.getElementById('dareBtn').addEventListener('click', () => pickChallenge('dare'));
+        function pickChallenge(t) { const arr = t === 'dare' ? DARE : TRUTH; document.getElementById('challengeText').innerText = arr[Math.floor(Math.random() * arr.length)]; }
+
+        /* -----------------------------
+           Helpers & utilities
+           -----------------------------*/
+        function shuffle(a) { return a.map(v => ({ v, r: Math.random() })).sort((x, y) => x.r - y.r).map(x => x.v); }
+        function escapeHtml(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+        function daysUntil(dateStr) {
+            const t = new Date(dateStr);
+            const now = new Date();
+            // compare to start of today
+            const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            return Math.ceil((t - todayStart) / (1000 * 60 * 60 * 24));
+        }
+
+        /* -----------------------------
+           Small toast
+           -----------------------------*/
+        function toast(msg) {
+            const el = document.createElement('div');
+            el.innerText = msg;
+            el.className = 'rizz-toast';
+            el.style.position = 'fixed';
+            el.style.left = '50%';
+            el.style.transform = 'translateX(-50%)';
+            el.style.bottom = '28px';
+            el.style.background = 'rgba(0,0,0,0.6)';
+            el.style.padding = '10px 14px';
+            el.style.borderRadius = '999px';
+            el.style.zIndex = 9999;
+            document.body.appendChild(el);
+            setTimeout(() => { el.style.opacity = '0'; el.style.transform = 'translateX(-50%) translateY(8px)'; }, 1400);
+            setTimeout(() => el.remove(), 2000);
+        }
+
+        /* -----------------------------
+           Render everything on load
+           -----------------------------*/
+        function renderAll() {
+            buildCategories();
+            renderRizz();
+            renderFavs();
+            // initialize quiz area but don't start autoplay (startQuiz sets questions)
+            // startQuiz(); // keep commented so quiz starts when user wants — but you can call it
+            renderDiary();
+            renderReminders();
+        }
+
+        (function init() {
+            renderAll();
+
+            // keyboard nav for rizz
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') document.getElementById('nextBtn').click();
+                if (e.key === 'ArrowLeft') document.getElementById('prevBtn').click();
+            });
+
+            // start quiz ready (but not visible until quiz tab clicked)
+            startQuiz();
+        })();
+    </script>
+    
 </body>
 
 </html>
